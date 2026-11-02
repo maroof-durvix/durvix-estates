@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "jetro": {
+      "command": "C:\\Users\\M. Ahmed Durwesh\\.jetro\\runtime\\node-win32-x64.exe",
+      "args": [
+        "C:\\Users\\M. Ahmed Durwesh\\.jetro\\mcp-server\\index.js"
+      ],
+      "env": {
+        "JET_WORKSPACE": "c:\\Users\\M. Ahmed Durwesh\\OneDrive\\Desktop\\Company\\durvix-estates",
+        "JET_API_URL": "https://api.jetro.ai",
+        "PATH": "C:\\Users\\M. Ahmed Durwesh\\.jetro\\runtime;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\composer;C:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\170\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\180\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\170\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\nodejs\\;C:\\src\\flutter\\bin;C:\\Android\\cmdline-tools\\latest\\bin;C:\\Java\\jdk-17\\bin;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\agy\\bin;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Programs\\Qoder\\bin;C:\\Users\\M. Ahmed Durwesh\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\M. Ahmed Durwesh\\.dotnet\\tools;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Programs\\Antigravity\\bin;C:\\Users\\M. Ahmed Durwesh\\.dotnet\\tools;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Python\\bin;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Programs\\Antigravity IDE\\bin;C:\\Users\\M. Ahmed Durwesh\\AppData\\Roaming\\npm;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Programs\\Ollama;C:\\Users\\M. Ahmed Durwesh\\AppData\\Local\\Microsoft\\WinGet\\Packages\\astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe;"
+      }
+    }
+  }
+}
