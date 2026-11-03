@@ -1,0 +1,232 @@
+{
+  "users": [
+    {
+      "email": "admin@durvix.com",
+      "password": "admin123",
+      "name": "DURVIX Administrator",
+      "phone": "+923001234567",
+      "role": "ADMIN",
+      "isApproved": true,
+      "agency": "DURVIX Estates HQ",
+      "bio": "Platform owner and oversight authority."
+    },
+    {
+      "email": "user@durvix.com",
+      "password": "user123",
+      "name": "Ayesha Siddiqui",
+      "phone": "+923011234567",
+      "role": "USER",
+      "isApproved": true,
+      "agency": null,
+      "bio": null
+    },
+    {
+      "email": "hassan@durvix.com",
+      "password": "agent123",
+      "name": "Hassan Ali Khan",
+      "phone": "+923211234567",
+      "role": "AGENT",
+      "isApproved": true,
+      "agency": "DURVIX Karachi",
+      "bio": "Specialist in Clifton & DHA luxury residences with 12 years of curated listings."
+    },
+    {
+      "email": "bilal@durvix.com",
+      "password": "agent123",
+      "name": "Bilal Ahmed",
+      "phone": "+923331234567",
+      "role": "AGENT",
+      "isApproved": true,
+      "agency": "DURVIX Lahore",
+      "bio": "Counsel for heritage mansions and modern DHA estates across Lahore."
+    },
+    {
+      "email": "sana@durvix.com",
+      "password": "agent123",
+      "name": "Sana Malik",
+      "phone": "+923451234567",
+      "role": "AGENT",
+      "isApproved": true,
+      "agency": "DURVIX Islamabad",
+      "bio": "Curator of F-sector modern architecture and Bahria Heights penthouses."
+    }
+  ],
+  "properties": [
+    {
+      "title": "Clifton Seaview Modern Villa",
+      "description": "A statement of waterfront modernism on Clifton's golden stretch. Floor-to-ceiling glazing frames the Arabian Sea while cantilevered terraces deliver uninterrupted sunsets. Imported Italian marble, smart-home automation, and a private infinity pool define this architectural landmark.",
+      "price": 285000000,
+      "rentPrice": null,
+      "type": "BUY",
+      "city": "Karachi",
+      "address": "Block 5, Clifton, Karachi",
+      "area": "Clifton",
+      "lat": 24.8137,
+      "lng": 67.0252,
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "sizeSqft": 11500,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/6b257023c8a8.jpg",
+        "https://sfile.chatglm.cn/images-ppt/578e14bea083.jpg",
+        "https://sfile.chatglm.cn/images-ppt/eebeb3ad47af.jpg"
+      ],
+      "featured": true,
+      "agentEmail": "hassan@durvix.com"
+    },
+    {
+      "title": "DHA Phase 8 Sky Penthouse",
+      "description": "A double-height penthouse crowning DHA Phase 8. The interior is a study in restraint — warm walnut joinery, bronze accents, and a wraparound terrace overlooking the city skyline. Fully furnished with European designer pieces.",
+      "price": 0,
+      "rentPrice": 850000,
+      "type": "RENT",
+      "city": "Karachi",
+      "address": "DHA Phase 8, Karachi",
+      "area": "DHA Phase 8",
+      "lat": 24.827,
+      "lng": 67.0695,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "sizeSqft": 6200,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/0fdca07f2fa9.jpg",
+        "https://sfile.chatglm.cn/images-ppt/6cbada3d7706.jpg",
+        "https://sfile.chatglm.cn/images-ppt/79099ed3ce26.png"
+      ],
+      "featured": true,
+      "agentEmail": "hassan@durvix.com"
+    },
+    {
+      "title": "Bahria Town Premium Mansion",
+      "description": "A grand Mediterranean-inspired mansion set within a gated enclave. Sweeping driveways, a columned portico, and a dramatic central atrium. The grounds include a formal garden, a heated pool, and staff quarters for six.",
+      "price": 195000000,
+      "rentPrice": null,
+      "type": "BUY",
+      "city": "Karachi",
+      "address": "Bahria Town, Precinct 20, Karachi",
+      "area": "Bahria Town",
+      "lat": 24.8765,
+      "lng": 67.0578,
+      "bedrooms": 7,
+      "bathrooms": 8,
+      "sizeSqft": 14000,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/e88385a776c4.jpg",
+        "https://sfile.chatglm.cn/images-ppt/61852f31aa75.jpg",
+        "https://sfile.chatglm.cn/images-ppt/0fb93dc7b06b.jpg"
+      ],
+      "featured": false,
+      "agentEmail": "hassan@durvix.com"
+    },
+    {
+      "title": "DHA Phase 6 Contemporary Villa",
+      "description": "A clean-lined contemporary villa balancing concrete, glass, and warm timber. The ground floor opens fully to a landscaped courtyard with a reflective pool. Award-winning local architecture.",
+      "price": 165000000,
+      "rentPrice": null,
+      "type": "BUY",
+      "city": "Lahore",
+      "address": "DHA Phase 6, Sector C, Lahore",
+      "area": "DHA Phase 6",
+      "lat": 31.4489,
+      "lng": 74.4044,
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "sizeSqft": 9800,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/578e14bea083.jpg",
+        "https://sfile.chatglm.cn/images-ppt/b47e2a9c3874.jpg",
+        "https://sfile.chatglm.cn/images-ppt/6cbada3d7706.jpg"
+      ],
+      "featured": true,
+      "agentEmail": "bilal@durvix.com"
+    },
+    {
+      "title": "Gulberg Heritage Mansion",
+      "description": "A restored heritage mansion in the heart of Gulberg. Original 1950s proportions meet restrained modern interventions — brass inlay doors, teak staircases, and a private inner courtyard with a fountain.",
+      "price": 220000000,
+      "rentPrice": null,
+      "type": "BUY",
+      "city": "Lahore",
+      "address": "Gulberg III, Lahore",
+      "area": "Gulberg",
+      "lat": 31.5189,
+      "lng": 74.3466,
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "sizeSqft": 12500,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/a29d8876a29a.jpg",
+        "https://sfile.chatglm.cn/images-ppt/e88385a776c4.jpg",
+        "https://sfile.chatglm.cn/images-ppt/79099ed3ce26.png"
+      ],
+      "featured": false,
+      "agentEmail": "bilal@durvix.com"
+    },
+    {
+      "title": "Bahria Orchard Luxury Farmhouse",
+      "description": "A weekend farmhouse on an acre of manicured land. Vaulted living spaces open to an infinity pool and a private orchard. Designed for entertaining, with an outdoor kitchen and a fire lounge.",
+      "price": 0,
+      "rentPrice": 620000,
+      "type": "RENT",
+      "city": "Lahore",
+      "address": "Bahria Orchard, Sector D, Lahore",
+      "area": "Bahria Orchard",
+      "lat": 31.3895,
+      "lng": 74.1978,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "sizeSqft": 7200,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/b47e2a9c3874.jpg",
+        "https://sfile.chatglm.cn/images-ppt/894626f10605.jpg",
+        "https://sfile.chatglm.cn/images-ppt/0fdca07f2fa9.jpg"
+      ],
+      "featured": false,
+      "agentEmail": "bilal@durvix.com"
+    },
+    {
+      "title": "F-7 Modern Architectural Mansion",
+      "description": "A landmark of Islamabad's F-7 sector. Brutalist concrete volumes float over glass, anchored by a stone-clad core. The lower level houses a spa, cinema, and a temperature-controlled wine cellar.",
+      "price": 310000000,
+      "rentPrice": null,
+      "type": "BUY",
+      "city": "Islamabad",
+      "address": "Street 12, F-7/2, Islamabad",
+      "area": "F-7",
+      "lat": 33.7215,
+      "lng": 73.0571,
+      "bedrooms": 7,
+      "bathrooms": 9,
+      "sizeSqft": 16000,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/894626f10605.jpg",
+        "https://sfile.chatglm.cn/images-ppt/61852f31aa75.jpg",
+        "https://sfile.chatglm.cn/images-ppt/6b257023c8a8.jpg"
+      ],
+      "featured": true,
+      "agentEmail": "sana@durvix.com"
+    },
+    {
+      "title": "Bahria Heights Penthouse",
+      "description": "A penthouse perched above the Margalla foothills. Double-aspect living rooms, a private rooftop garden, and a sky terrace with a heated plunge pool. Sold fully furnished.",
+      "price": 0,
+      "rentPrice": 720000,
+      "type": "RENT",
+      "city": "Islamabad",
+      "address": "Bahria Heights, Phase 8, Islamabad",
+      "area": "Bahria Town",
+      "lat": 33.6515,
+      "lng": 73.0935,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "sizeSqft": 5800,
+      "images": [
+        "https://sfile.chatglm.cn/images-ppt/6cbada3d7706.jpg",
+        "https://sfile.chatglm.cn/images-ppt/eebeb3ad47af.jpg",
+        "https://sfile.chatglm.cn/images-ppt/a29d8876a29a.jpg"
+      ],
+      "featured": false,
+      "agentEmail": "sana@durvix.com"
+    }
+  ]
+}

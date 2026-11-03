@@ -1,17 +1,968 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DURVIX Estates — Luxury Real Estate & Anti-Commission Leakage</title>
-    <link rel="icon" type="image/png" href="/icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-CwVDHPhS.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DCBcGAD7.css">
-  </head>
-  <body class="bg-gray-50 text-gray-900 font-sans antialiased selection:bg-[#A9793F]/20 selection:text-[#8B5A2B]">
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DURVIX Estates — Ultra-Luxury Real Estate & Anti-Commission Leakage</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              walnut: '#8B5A2B',
+              walnutDark: '#67411B',
+              gold: '#A9793F',
+              goldLight: '#D4AF37',
+              charcoal: '#111827',
+              sand: '#F9F8F6'
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAFAFA; color: #111827; }
+    h1, h2, h3, h4, .font-cinzel { font-family: 'Cinzel', serif; }
+    .gold-gradient { background: linear-gradient(135deg, #A9793F 0%, #D4AF37 50%, #8B5A2B 100%); }
+    .gold-text { background: linear-gradient(135deg, #A9793F 0%, #D4AF37 70%, #8B5A2B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#8B5A2B]/20 selection:text-[#8B5A2B]">
+
+  <!-- Top Announcement Bar: Layer 1 PII Protection Notice -->
+  <div class="bg-brand-charcoal text-gray-300 text-xs py-2 px-4 border-b border-gray-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-medium tracking-wider uppercase text-[10px] text-brand-gold">Anti-Commission Leakage Protocol Active</span>
+        <span class="hidden md:inline text-gray-400">| Direct Contact Masked & Token Escrow Verified</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <span class="text-gray-400">Current Role:</span>
+        <select id="roleSelector" onchange="switchRole(this.value)" class="bg-gray-800 text-brand-gold text-xs px-2 py-0.5 rounded border border-gray-700 outline-none">
+          <option value="USER">Buyer (Ayesha Siddiqui)</option>
+          <option value="AGENT">Agent (Hassan Ali Khan)</option>
+          <option value="ADMIN">Admin (DURVIX HQ)</option>
+        </select>
+        <button onclick="openConciergeModal()" class="text-brand-gold hover:text-white transition">Private Concierge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-4 cursor-pointer" onclick="filterByCity('ALL')">
+        <div class="w-11 h-11 bg-brand-charcoal flex items-center justify-center border border-brand-gold/40 shadow-sm">
+          <span class="font-cinzel text-xl font-bold gold-text">D</span>
+        </div>
+        <div>
+          <span class="font-cinzel text-2xl font-bold tracking-widest text-brand-charcoal block leading-none">DURVIX</span>
+          <span class="text-[9px] uppercase tracking-[0.3em] text-brand-walnut font-semibold block mt-1">ESTATES • PAKISTAN</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+        <button onclick="filterByType('ALL')" class="hover:text-brand-walnut transition">All Residences</button>
+        <button onclick="filterByType('BUY')" class="hover:text-brand-walnut transition">Buy</button>
+        <button onclick="filterByType('RENT')" class="hover:text-brand-walnut transition">Rent</button>
+        <button onclick="scrollToSection('anti-leakage')" class="hover:text-brand-walnut transition flex items-center gap-1.5">
+          <i data-lucide="shield-check" class="w-4 h-4 text-brand-walnut"></i> Security Layers
+        </button>
+        <button onclick="scrollToSection('agents-section')" class="hover:text-brand-walnut transition">Agents</button>
+        <button id="adminNavBtn" onclick="toggleAdminPanel()" class="hidden text-brand-walnut font-bold flex items-center gap-1 bg-amber-50 px-3 py-1 rounded border border-amber-200">
+          <i data-lucide="shield-alert" class="w-4 h-4"></i> Control Room
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openTokenSimModal()" class="hidden sm:flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-brand-charcoal hover:bg-brand-walnut transition border border-brand-gold/40">
+          <i data-lucide="coins" class="w-4 h-4 text-brand-gold"></i> Token Simulator
+        </button>
+        <button onclick="openConciergeModal()" class="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white gold-gradient hover:opacity-95 transition shadow-md">
+          Schedule Viewing
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-brand-charcoal text-white pt-20 pb-28 px-4 overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#A9793F_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-gold/15 border border-brand-gold/30 rounded-full text-brand-gold text-xs uppercase tracking-widest font-semibold mb-6">
+        <i data-lucide="award" class="w-3.5 h-3.5"></i> Pakistan's Premier Protected Real Estate Network
+      </div>
+      <h1 class="font-cinzel text-4xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+        Ultra-Luxury Living, <span class="gold-text">Guaranteed.</span>
+      </h1>
+      <p class="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg mb-10 font-light leading-relaxed">
+        Curated architectural estates, sky penthouses, and heritage mansions across Karachi, Lahore & Islamabad. Built on Pakistan's only zero-leakage token escrow architecture.
+      </p>
+
+      <!-- Search & Filter Console -->
+      <div class="bg-white p-4 sm:p-6 rounded-none shadow-2xl text-gray-900 border border-gray-100 max-w-4xl mx-auto text-left">
+        <div class="flex flex-wrap items-center gap-2 border-b border-gray-100 pb-4 mb-4">
+          <button onclick="filterByType('ALL')" id="tab-all" class="type-tab px-4 py-1.5 text-xs font-bold uppercase tracking-wider bg-brand-charcoal text-white">All Properties</button>
+          <button onclick="filterByType('BUY')" id="tab-buy" class="type-tab px-4 py-1.5 text-xs font-bold uppercase tracking-wider bg-gray-100 text-gray-600 hover:bg-gray-200">Buy (Mansions & Villas)</button>
+          <button onclick="filterByType('RENT')" id="tab-rent" class="type-tab px-4 py-1.5 text-xs font-bold uppercase tracking-wider bg-gray-100 text-gray-600 hover:bg-gray-200">Rent (Penthouses & Farmhouses)</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1">Select City</label>
+            <select id="cityFilter" onchange="applyFilters()" class="w-full bg-gray-50 border border-gray-300 p-2.5 text-sm font-medium outline-none focus:border-brand-walnut">
+              <option value="ALL">All Cities (Karachi, Lahore, Islamabad)</option>
+              <option value="Karachi">Karachi (Clifton, DHA, Bahria)</option>
+              <option value="Lahore">Lahore (DHA Phase 6, Gulberg, Orchard)</option>
+              <option value="Islamabad">Islamabad (F-7, Bahria Heights)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1">Bedrooms</label>
+            <select id="bedFilter" onchange="applyFilters()" class="w-full bg-gray-50 border border-gray-300 p-2.5 text-sm font-medium outline-none focus:border-brand-walnut">
+              <option value="0">Any Bedrooms (4 to 7 Beds)</option>
+              <option value="4">4+ Bedrooms</option>
+              <option value="5">5+ Bedrooms</option>
+              <option value="6">6+ Bedrooms</option>
+              <option value="7">7 Bedrooms (Grand Estate)</option>
+            </select>
+          </div>
+
+          <div class="flex items-end">
+            <button onclick="applyFilters()" class="w-full py-2.5 bg-brand-walnut hover:bg-brand-walnutDark text-white font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2 transition">
+              <i data-lucide="search" class="w-4 h-4"></i> Filter Residences
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Properties Grid Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-10 pb-4 border-b border-gray-200">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-walnut block">Exclusive Portfolio</span>
+        <h2 class="font-cinzel text-3xl font-bold text-gray-900 mt-1">Available Luxury Residences</h2>
+      </div>
+      <div id="propertyCountBadge" class="text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-100 px-3 py-1.5 rounded">
+        Showing 8 Residences
+      </div>
+    </div>
+
+    <!-- Grid Container -->
+    <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Generated via JS -->
+    </div>
+  </section>
+
+  <!-- Anti-Commission Leakage Framework Showcase (The Core Differentiator) -->
+  <section id="anti-leakage" class="bg-gray-900 text-white py-20 px-4 border-t border-b border-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-gold block mb-2">Platform Architecture</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold">The Anti-Commission Leakage Framework</h2>
+        <p class="text-gray-400 text-sm mt-4 font-light">
+          Engineered so no client, broker, or agent can bypass the platform. Guaranteed security from first viewing to escrow settlement.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Layer 1 -->
+        <div class="bg-gray-800/80 p-8 border border-gray-700/60 relative">
+          <div class="w-12 h-12 bg-brand-walnut/30 border border-brand-gold/40 flex items-center justify-center mb-6">
+            <span class="font-cinzel text-xl font-bold gold-text">01</span>
+          </div>
+          <h3 class="font-cinzel text-lg font-bold mb-3 text-white">Layer 1 — PII Masking</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            Every seller, buyer, and broker phone number and email is masked across all public endpoints (<code class="text-amber-400">+92-321-*******</code>). Zero direct contact until deal tokenization.
+          </p>
+          <div class="bg-gray-900 p-3 text-[11px] font-mono text-emerald-400 border border-gray-700">
+            ✓ Public Phone: +92-321-*******<br/>
+            ✓ Public Email: h***@durvix.com
+          </div>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="bg-gray-800/80 p-8 border border-brand-gold/40 relative shadow-lg">
+          <div class="absolute -top-3 right-4 bg-brand-gold text-brand-charcoal text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
+            Escrow Lock
+          </div>
+          <div class="w-12 h-12 bg-brand-walnut/30 border border-brand-gold/40 flex items-center justify-center mb-6">
+            <span class="font-cinzel text-xl font-bold gold-text">02</span>
+          </div>
+          <h3 class="font-cinzel text-lg font-bold mb-3 text-white">Layer 2 — Token Commitment</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            A PKR 5,000 commitment token must be escrow-locked before a verified viewing is scheduled. Ensures serious high-net-worth buyers and eliminates casual tire-kickers.
+          </p>
+          <button onclick="openTokenSimModal()" class="w-full py-2 bg-brand-gold hover:bg-brand-goldLight text-brand-charcoal font-bold text-xs uppercase tracking-wider transition">
+            Test Token Simulator →
+          </button>
+        </div>
+
+        <!-- Layer 3 -->
+        <div class="bg-gray-800/80 p-8 border border-gray-700/60 relative">
+          <div class="w-12 h-12 bg-brand-walnut/30 border border-brand-gold/40 flex items-center justify-center mb-6">
+            <span class="font-cinzel text-xl font-bold gold-text">03</span>
+          </div>
+          <h3 class="font-cinzel text-lg font-bold mb-3 text-white">Layer 3 — Programmatic Ban</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            One admin switch in the DURVIX Control Room flags any non-compliant agent as blocked. Their listings instantly vanish from public feeds in real time.
+          </p>
+          <div class="bg-gray-900 p-3 text-[11px] font-mono text-amber-400 border border-gray-700">
+            Status: isBlocked = true<br/>
+            Result: Feed Visibility 0% (Immediate)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agent Directory Section -->
+  <section id="agents-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-walnut block">Verified Representation</span>
+      <h2 class="font-cinzel text-3xl font-bold text-gray-900 mt-1">DURVIX Accredited Estate Counsel</h2>
+      <p class="text-gray-500 text-sm mt-3">All counsel are bound by the Anti-Commission Protocol and fiduciary standards.</p>
+    </div>
+
+    <div id="agentsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Generated via JS -->
+    </div>
+  </section>
+
+  <!-- Admin Control Room Modal / Drawer -->
+  <div id="adminPanelModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-4xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto border-2 border-brand-walnut">
+      <div class="flex justify-between items-center pb-4 mb-6 border-b border-gray-200">
+        <div>
+          <span class="text-xs font-bold text-red-600 uppercase tracking-widest block">Restricted Access</span>
+          <h3 class="font-cinzel text-2xl font-bold text-gray-900">DURVIX Estates — Executive Control Room</h3>
+        </div>
+        <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-gray-800 p-2"><i data-lucide="x" class="w-6 h-6"></i></button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+        <div class="bg-gray-50 p-4 border border-gray-200">
+          <span class="text-[10px] uppercase font-bold text-gray-500 block">Total Portfolio Value</span>
+          <span class="font-cinzel text-xl font-bold text-brand-walnut">PKR 1.17 Arab</span>
+        </div>
+        <div class="bg-gray-50 p-4 border border-gray-200">
+          <span class="text-[10px] uppercase font-bold text-gray-500 block">Active Listings</span>
+          <span class="font-cinzel text-xl font-bold text-gray-900" id="adminActiveCount">8</span>
+        </div>
+        <div class="bg-gray-50 p-4 border border-gray-200">
+          <span class="text-[10px] uppercase font-bold text-gray-500 block">Escrow Tokens</span>
+          <span class="font-cinzel text-xl font-bold text-emerald-600">PKR 45,000</span>
+        </div>
+        <div class="bg-gray-50 p-4 border border-gray-200">
+          <span class="text-[10px] uppercase font-bold text-gray-500 block">Active Agents</span>
+          <span class="font-cinzel text-xl font-bold text-gray-900">3 Approved</span>
+        </div>
+      </div>
+
+      <h4 class="font-cinzel text-base font-bold mb-4 text-gray-900">Layer 3: Agent Moderation & Instant Ban Switch</h4>
+      <div class="overflow-x-auto border border-gray-200">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-gray-100 uppercase text-gray-600 border-b border-gray-200">
+            <tr>
+              <th class="p-3">Agent Name</th>
+              <th class="p-3">Territory</th>
+              <th class="p-3">Masked Contact</th>
+              <th class="p-3">Compliance Status</th>
+              <th class="p-3 text-right">Emergency Action</th>
+            </tr>
+          </thead>
+          <tbody id="adminAgentTable" class="divide-y divide-gray-200">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property Detail Modal -->
+  <div id="propertyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-300 shadow-2xl relative">
+      <button onclick="closePropertyModal()" class="absolute top-4 right-4 z-10 bg-white/80 p-2 text-gray-700 hover:text-black">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div id="modalContent">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Token Payment Simulator Modal (Layer 2) -->
+  <div id="tokenModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-md w-full p-6 sm:p-8 border-2 border-brand-gold shadow-2xl text-center">
+      <div class="w-12 h-12 bg-amber-50 border border-brand-gold flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="shield-check" class="w-6 h-6 text-brand-walnut"></i>
+      </div>
+      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-walnut block">Layer 2 Protocol</span>
+      <h3 class="font-cinzel text-xl font-bold text-gray-900 mt-1 mb-2">Token Commitment Escrow</h3>
+      <p class="text-xs text-gray-500 mb-6">
+        Simulate the PKR 5,000 commitment token payment to unmask agent contact details.
+      </p>
+
+      <div id="simStepsContainer" class="space-y-3 mb-6 text-left">
+        <div id="step1" class="p-3 border text-xs flex items-center justify-between border-gray-200 text-gray-500">
+          <span>1. Authorizing PKR 5,000 Commitment</span>
+          <i data-lucide="circle" class="w-4 h-4"></i>
+        </div>
+        <div id="step2" class="p-3 border text-xs flex items-center justify-between border-gray-200 text-gray-500">
+          <span>2. Locking In DURVIX Escrow Vault</span>
+          <i data-lucide="circle" class="w-4 h-4"></i>
+        </div>
+        <div id="step3" class="p-3 border text-xs flex items-center justify-between border-gray-200 text-gray-500">
+          <span>3. Buyer Identity Signature Verified</span>
+          <i data-lucide="circle" class="w-4 h-4"></i>
+        </div>
+        <div id="step4" class="p-3 border text-xs flex items-center justify-between border-gray-200 text-gray-500">
+          <span>4. Lead Released & Direct Contact Unmasked</span>
+          <i data-lucide="circle" class="w-4 h-4"></i>
+        </div>
+      </div>
+
+      <div id="unmaskedResult" class="hidden bg-emerald-50 border border-emerald-300 p-4 text-left text-xs mb-6">
+        <div class="font-bold text-emerald-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+          <i data-lucide="check-circle" class="w-4 h-4"></i> Token Confirmed — Deal Secure
+        </div>
+        <p class="text-emerald-900 font-mono"><strong>Agent:</strong> Hassan Ali Khan (DURVIX Karachi)</p>
+        <p class="text-emerald-900 font-mono"><strong>Unmasked Phone:</strong> +92-321-1234567</p>
+        <p class="text-emerald-900 font-mono"><strong>Direct Email:</strong> hassan@durvix.com</p>
+      </div>
+
+      <button id="startSimBtn" onclick="runTokenSimulation()" class="w-full py-3 bg-brand-charcoal hover:bg-brand-walnut text-white font-bold text-xs uppercase tracking-wider transition">
+        Execute PKR 5,000 Escrow Lock
+      </button>
+      <button onclick="closeTokenModal()" class="mt-3 text-xs text-gray-400 hover:text-gray-700 underline block mx-auto">
+        Close Simulator
+      </button>
+    </div>
+  </div>
+
+  <!-- Concierge Modal -->
+  <div id="conciergeModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full p-8 border border-gray-300 shadow-2xl">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <span class="text-xs font-bold text-brand-walnut uppercase tracking-widest block">Confidential Enquiry</span>
+          <h3 class="font-cinzel text-2xl font-bold text-gray-900">DURVIX Private Concierge</h3>
+        </div>
+        <button onclick="closeConciergeModal()" class="text-gray-400 hover:text-black"><i data-lucide="x" class="w-6 h-6"></i></button>
+      </div>
+
+      <form onsubmit="handleConciergeSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold uppercase text-gray-700 mb-1">Full Legal Name</label>
+          <input type="text" required placeholder="e.g. Tariq Mansoor" class="w-full p-3 border border-gray-300 outline-none focus:border-brand-walnut">
+        </div>
+        <div>
+          <label class="block font-bold uppercase text-gray-700 mb-1">Corporate / Personal Email</label>
+          <input type="email" required placeholder="name@domain.com" class="w-full p-3 border border-gray-300 outline-none focus:border-brand-walnut">
+        </div>
+        <div>
+          <label class="block font-bold uppercase text-gray-700 mb-1">Contact Phone (Protected by Layer 1)</label>
+          <input type="tel" required placeholder="+92 300 1234567" class="w-full p-3 border border-gray-300 outline-none focus:border-brand-walnut">
+        </div>
+        <div>
+          <label class="block font-bold uppercase text-gray-700 mb-1">Residence of Interest / Requirement</label>
+          <textarea rows="3" required placeholder="Specify preferred city, villa size, or specific property..." class="w-full p-3 border border-gray-300 outline-none focus:border-brand-walnut"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-brand-charcoal hover:bg-brand-walnut text-white font-bold uppercase tracking-wider text-xs transition">
+          Submit Confidential Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-brand-charcoal text-gray-400 pt-16 pb-12 border-t border-gray-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 bg-black flex items-center justify-center border border-brand-gold/40">
+            <span class="font-cinzel text-base font-bold gold-text">D</span>
+          </div>
+          <span class="font-cinzel text-xl font-bold tracking-widest text-white">DURVIX</span>
+        </div>
+        <p class="text-gray-400 leading-relaxed font-light">
+          Pakistan's bespoke luxury real estate platform. Architectural integrity, protected transactions, zero commission leakage.
+        </p>
+      </div>
+
+      <div>
+        <h5 class="font-cinzel text-sm font-bold text-white uppercase tracking-wider mb-4">Metropolitan Territories</h5>
+        <ul class="space-y-2">
+          <li><button onclick="filterByCity('Karachi')" class="hover:text-brand-gold transition">Karachi — Clifton & DHA Phase 8</button></li>
+          <li><button onclick="filterByCity('Lahore')" class="hover:text-brand-gold transition">Lahore — DHA Phase 6 & Gulberg</button></li>
+          <li><button onclick="filterByCity('Islamabad')" class="hover:text-brand-gold transition">Islamabad — F-7 & Bahria Heights</button></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="font-cinzel text-sm font-bold text-white uppercase tracking-wider mb-4">Security Architecture</h5>
+        <ul class="space-y-2 text-gray-400">
+          <li>Layer 1: SHA-256 PII Cryptographic Masking</li>
+          <li>Layer 2: PKR 5,000 Escrow Commitment Token</li>
+          <li>Layer 3: Real-Time Broker Access Revocation</li>
+          <li>Encrypted Lead Telemetry</li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="font-cinzel text-sm font-bold text-white uppercase tracking-wider mb-4">Executive Headquarters</h5>
+        <p class="text-gray-400 leading-relaxed">
+          DURVIX Global Holdings<br/>
+          Clifton Block 4, Karachi, Pakistan<br/>
+          Direct Concierge: concierge@durvix.com
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-gray-500">
+      <p>© 2026 DURVIX Estates. All rights reserved. Registered with Pakistan Real Estate Oversight Authority.</p>
+      <div class="flex items-center gap-6">
+        <a href="#anti-leakage" class="hover:text-white transition">Anti-Leakage Patent</a>
+        <a href="#anti-leakage" class="hover:text-white transition">Escrow Charter</a>
+        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic & Seed Database -->
+  <script>
+    // 1. Data Store (from seed_data.json)
+    const initialProperties = [
+      {
+        id: 'prop_1',
+        title: "Clifton Seaview Modern Villa",
+        description: "A statement of waterfront modernism on Clifton's golden stretch. Floor-to-ceiling glazing frames the Arabian Sea while cantilevered terraces deliver uninterrupted sunsets. Imported Italian marble, smart-home automation, and a private infinity pool define this architectural landmark.",
+        price: 285000000,
+        rentPrice: null,
+        type: "BUY",
+        city: "Karachi",
+        address: "Block 5, Clifton, Karachi",
+        area: "Clifton",
+        bedrooms: 6,
+        bathrooms: 7,
+        sizeSqft: 11500,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/6b257023c8a8.jpg",
+          "https://sfile.chatglm.cn/images-ppt/578e14bea083.jpg",
+          "https://sfile.chatglm.cn/images-ppt/eebeb3ad47af.jpg"
+        ],
+        featured: true,
+        agentEmail: "hassan@durvix.com"
+      },
+      {
+        id: 'prop_2',
+        title: "DHA Phase 8 Sky Penthouse",
+        description: "A double-height penthouse crowning DHA Phase 8. The interior is a study in restraint — warm walnut joinery, bronze accents, and a wraparound terrace overlooking the city skyline. Fully furnished with European designer pieces.",
+        price: 0,
+        rentPrice: 850000,
+        type: "RENT",
+        city: "Karachi",
+        address: "DHA Phase 8, Karachi",
+        area: "DHA Phase 8",
+        bedrooms: 4,
+        bathrooms: 5,
+        sizeSqft: 6200,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/0fdca07f2fa9.jpg",
+          "https://sfile.chatglm.cn/images-ppt/6cbada3d7706.jpg",
+          "https://sfile.chatglm.cn/images-ppt/79099ed3ce26.png"
+        ],
+        featured: true,
+        agentEmail: "hassan@durvix.com"
+      },
+      {
+        id: 'prop_3',
+        title: "Bahria Town Premium Mansion",
+        description: "A grand Mediterranean-inspired mansion set within a gated enclave. Sweeping driveways, a columned portico, and a dramatic central atrium. The grounds include a formal garden, a heated pool, and staff quarters for six.",
+        price: 195000000,
+        rentPrice: null,
+        type: "BUY",
+        city: "Karachi",
+        address: "Bahria Town, Precinct 20, Karachi",
+        area: "Bahria Town",
+        bedrooms: 7,
+        bathrooms: 8,
+        sizeSqft: 14000,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/e88385a776c4.jpg",
+          "https://sfile.chatglm.cn/images-ppt/61852f31aa75.jpg",
+          "https://sfile.chatglm.cn/images-ppt/0fb93dc7b06b.jpg"
+        ],
+        featured: false,
+        agentEmail: "hassan@durvix.com"
+      },
+      {
+        id: 'prop_4',
+        title: "DHA Phase 6 Contemporary Villa",
+        description: "A clean-lined contemporary villa balancing concrete, glass, and warm timber. The ground floor opens fully to a landscaped courtyard with a reflective pool. Award-winning local architecture.",
+        price: 165000000,
+        rentPrice: null,
+        type: "BUY",
+        city: "Lahore",
+        address: "DHA Phase 6, Sector C, Lahore",
+        area: "DHA Phase 6",
+        bedrooms: 5,
+        bathrooms: 6,
+        sizeSqft: 9800,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/578e14bea083.jpg",
+          "https://sfile.chatglm.cn/images-ppt/b47e2a9c3874.jpg",
+          "https://sfile.chatglm.cn/images-ppt/6cbada3d7706.jpg"
+        ],
+        featured: true,
+        agentEmail: "bilal@durvix.com"
+      },
+      {
+        id: 'prop_5',
+        title: "Gulberg Heritage Mansion",
+        description: "A restored heritage mansion in the heart of Gulberg. Original 1950s proportions meet restrained modern interventions — brass inlay doors, teak staircases, and a private inner courtyard with a fountain.",
+        price: 220000000,
+        rentPrice: null,
+        type: "BUY",
+        city: "Lahore",
+        address: "Gulberg III, Lahore",
+        area: "Gulberg",
+        bedrooms: 6,
+        bathrooms: 7,
+        sizeSqft: 12500,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/a29d8876a29a.jpg",
+          "https://sfile.chatglm.cn/images-ppt/e88385a776c4.jpg",
+          "https://sfile.chatglm.cn/images-ppt/79099ed3ce26.png"
+        ],
+        featured: false,
+        agentEmail: "bilal@durvix.com"
+      },
+      {
+        id: 'prop_6',
+        title: "Bahria Orchard Luxury Farmhouse",
+        description: "A weekend farmhouse on an acre of manicured land. Vaulted living spaces open to an infinity pool and a private orchard. Designed for entertaining, with an outdoor kitchen and a fire lounge.",
+        price: 0,
+        rentPrice: 620000,
+        type: "RENT",
+        city: "Lahore",
+        address: "Bahria Orchard, Sector D, Lahore",
+        area: "Bahria Orchard",
+        bedrooms: 4,
+        bathrooms: 5,
+        sizeSqft: 7200,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/b47e2a9c3874.jpg",
+          "https://sfile.chatglm.cn/images-ppt/894626f10605.jpg",
+          "https://sfile.chatglm.cn/images-ppt/0fdca07f2fa9.jpg"
+        ],
+        featured: false,
+        agentEmail: "bilal@durvix.com"
+      },
+      {
+        id: 'prop_7',
+        title: "F-7 Modern Architectural Mansion",
+        description: "A landmark of Islamabad's F-7 sector. Brutalist concrete volumes float over glass, anchored by a stone-clad core. The lower level houses a spa, cinema, and a temperature-controlled wine cellar.",
+        price: 310000000,
+        rentPrice: null,
+        type: "BUY",
+        city: "Islamabad",
+        address: "Street 12, F-7/2, Islamabad",
+        area: "F-7",
+        bedrooms: 7,
+        bathrooms: 9,
+        sizeSqft: 16000,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/894626f10605.jpg",
+          "https://sfile.chatglm.cn/images-ppt/61852f31aa75.jpg",
+          "https://sfile.chatglm.cn/images-ppt/6b257023c8a8.jpg"
+        ],
+        featured: true,
+        agentEmail: "sana@durvix.com"
+      },
+      {
+        id: 'prop_8',
+        title: "Bahria Heights Penthouse",
+        description: "A penthouse perched above the Margalla foothills. Double-aspect living rooms, a private rooftop garden, and a sky terrace with a heated plunge pool. Sold fully furnished.",
+        price: 0,
+        rentPrice: 720000,
+        type: "RENT",
+        city: "Islamabad",
+        address: "Bahria Heights, Phase 8, Islamabad",
+        area: "Bahria Town",
+        bedrooms: 4,
+        bathrooms: 5,
+        sizeSqft: 5800,
+        images: [
+          "https://sfile.chatglm.cn/images-ppt/6cbada3d7706.jpg",
+          "https://sfile.chatglm.cn/images-ppt/eebeb3ad47af.jpg",
+          "https://sfile.chatglm.cn/images-ppt/a29d8876a29a.jpg"
+        ],
+        featured: false,
+        agentEmail: "sana@durvix.com"
+      }
+    ];
+
+    const initialAgents = [
+      {
+        email: "hassan@durvix.com",
+        name: "Hassan Ali Khan",
+        phone: "+92 321 1234567",
+        city: "Karachi",
+        agency: "DURVIX Karachi HQ",
+        bio: "Specialist in Clifton waterfront & DHA Phase 8 sky penthouses with 12 years of curated ultra-luxury transactions.",
+        isBlocked: false
+      },
+      {
+        email: "bilal@durvix.com",
+        name: "Bilal Ahmed",
+        phone: "+92 333 1234567",
+        city: "Lahore",
+        agency: "DURVIX Lahore",
+        bio: "Senior counsel for heritage Gulberg mansions, modern DHA Phase 6 estates, and gated agricultural retreats.",
+        isBlocked: false
+      },
+      {
+        email: "sana@durvix.com",
+        name: "Sana Malik",
+        phone: "+92 345 1234567",
+        city: "Islamabad",
+        agency: "DURVIX Islamabad",
+        bio: "Curator of Margalla-facing F-sector architecture and high-altitude penthouses in the capital territory.",
+        isBlocked: false
+      }
+    ];
+
+    let properties = [...initialProperties];
+    let agents = [...initialAgents];
+    let currentTypeFilter = 'ALL';
+    let currentCityFilter = 'ALL';
+    let currentBedFilter = 0;
+    let currentRole = 'USER';
+
+    function formatPrice(p) {
+      if (p.type === 'RENT' && p.rentPrice) {
+        const lacs = (p.rentPrice / 100000).toFixed(1);
+        return `PKR ${lacs} Lac / mo`;
+      }
+      if (p.price >= 10000000) {
+        const crores = (p.price / 10000000).toFixed(1);
+        return `PKR ${crores} Crore`;
+      }
+      return `PKR ${p.price.toLocaleString()}`;
+    }
+
+    function renderProperties() {
+      const container = document.getElementById('propertiesGrid');
+      
+      // Filter out properties belonging to blocked agents (Layer 3 enforcement)
+      const blockedEmails = agents.filter(a => a.isBlocked).map(a => a.email);
+      const filtered = properties.filter(p => {
+        if (blockedEmails.includes(p.agentEmail)) return false;
+        if (currentTypeFilter !== 'ALL' && p.type !== currentTypeFilter) return false;
+        if (currentCityFilter !== 'ALL' && p.city.toLowerCase() !== currentCityFilter.toLowerCase()) return false;
+        if (currentBedFilter > 0 && p.bedrooms < currentBedFilter) return false;
+        return true;
+      });
+
+      document.getElementById('propertyCountBadge').innerText = `Showing ${filtered.length} Residences`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-3 text-center py-16 bg-white border border-gray-200">
+            <i data-lucide="home" class="w-10 h-10 text-gray-400 mx-auto mb-3"></i>
+            <h4 class="font-cinzel text-lg font-bold text-gray-800">No Residences Match Current Filters</h4>
+            <p class="text-xs text-gray-500 mt-1">Try resetting city or bedroom criteria.</p>
+            <button onclick="filterByType('ALL'); filterByCity('ALL');" class="mt-4 px-4 py-2 bg-brand-charcoal text-white text-xs font-bold uppercase tracking-wider">Reset Filters</button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filtered.map(p => `
+        <div class="bg-white border border-gray-200 group hover:border-brand-walnut transition duration-300 flex flex-col justify-between shadow-sm hover:shadow-lg">
+          <div>
+            <div class="relative overflow-hidden aspect-[16/10] bg-gray-100 cursor-pointer" onclick="openPropertyModal('${p.id}')">
+              <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+              <div class="absolute top-3 left-3 flex gap-2">
+                <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white ${p.type === 'BUY' ? 'bg-brand-charcoal' : 'bg-brand-walnut'}">
+                  ${p.type}
+                </span>
+                ${p.featured ? '<span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-black bg-brand-gold">Featured</span>' : ''}
+              </div>
+              <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-0.5 uppercase tracking-widest">
+                ${p.city}
+              </div>
+            </div>
+
+            <div class="p-5">
+              <div class="text-[10px] font-bold uppercase tracking-widest text-brand-walnut mb-1">${p.area}, ${p.city}</div>
+              <h3 class="font-cinzel text-lg font-bold text-gray-900 group-hover:text-brand-walnut transition cursor-pointer" onclick="openPropertyModal('${p.id}')">
+                ${p.title}
+              </h3>
+              <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed font-light">
+                ${p.description}
+              </p>
+
+              <div class="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100 text-xs text-gray-600">
+                <span class="flex items-center gap-1"><i data-lucide="bed" class="w-3.5 h-3.5 text-brand-walnut"></i> ${p.bedrooms} Beds</span>
+                <span class="flex items-center gap-1"><i data-lucide="bath" class="w-3.5 h-3.5 text-brand-walnut"></i> ${p.bathrooms} Baths</span>
+                <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-3.5 h-3.5 text-brand-walnut"></i> ${p.sizeSqft.toLocaleString()} SqFt</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0 flex items-center justify-between mt-2">
+            <div>
+              <span class="text-[10px] uppercase font-bold text-gray-400 block tracking-wider">Acquisition</span>
+              <span class="font-cinzel text-base font-bold text-gray-900">${formatPrice(p)}</span>
+            </div>
+            <button onclick="openPropertyModal('${p.id}')" class="px-3.5 py-2 text-xs font-bold uppercase tracking-wider bg-gray-50 hover:bg-brand-walnut hover:text-white text-gray-800 border border-gray-300 transition">
+              View Specs
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function renderAgents() {
+      const container = document.getElementById('agentsGrid');
+      container.innerHTML = agents.map(a => `
+        <div class="bg-white p-6 border ${a.isBlocked ? 'border-red-300 opacity-60 bg-red-50/20' : 'border-gray-200'} shadow-sm">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-brand-walnut block">${a.city} Territory</span>
+              <h4 class="font-cinzel text-lg font-bold text-gray-900">${a.name}</h4>
+              <span class="text-xs text-gray-500">${a.agency}</span>
+            </div>
+            <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-0.5 ${a.isBlocked ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800'}">
+              ${a.isBlocked ? 'Access Revoked' : 'Verified Counsel'}
+            </span>
+          </div>
+          <p class="text-xs text-gray-600 font-light leading-relaxed mb-6">${a.bio}</p>
+          
+          <div class="bg-gray-50 p-3 text-xs border border-gray-200 space-y-1 font-mono">
+            <div class="text-gray-500 text-[10px] uppercase font-bold tracking-wider mb-1">Layer 1 Protected Details</div>
+            <div>Phone: <span class="font-bold text-amber-700">+92-3**-*******</span></div>
+            <div>Email: <span class="font-bold text-amber-700">${a.email.charAt(0)}***@durvix.com</span></div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function renderAdminTable() {
+      const tbody = document.getElementById('adminAgentTable');
+      tbody.innerHTML = agents.map(a => `
+        <tr class="hover:bg-gray-50">
+          <td class="p-3 font-semibold text-gray-900">${a.name}</td>
+          <td class="p-3 text-gray-500">${a.city}</td>
+          <td class="p-3 font-mono text-gray-500">${a.phone}</td>
+          <td class="p-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${a.isBlocked ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}">
+              ${a.isBlocked ? 'BLOCKED' : 'ACTIVE'}
+            </span>
+          </td>
+          <td class="p-3 text-right">
+            <button onclick="toggleAgentBan('${a.email}')" class="px-3 py-1 font-bold text-xs uppercase tracking-wider rounded ${a.isBlocked ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-red-600 text-white hover:bg-red-700'}">
+              ${a.isBlocked ? 'Restore Access' : 'Revoke (Ban)'}
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      const activeProperties = properties.filter(p => !agents.find(a => a.email === p.agentEmail && a.isBlocked));
+      document.getElementById('adminActiveCount').innerText = activeProperties.length;
+    }
+
+    function toggleAgentBan(email) {
+      const agent = agents.find(a => a.email === email);
+      if (agent) {
+        agent.isBlocked = !agent.isBlocked;
+        renderAdminTable();
+        renderAgents();
+        renderProperties();
+      }
+    }
+
+    function filterByType(type) {
+      currentTypeFilter = type;
+      document.querySelectorAll('.type-tab').forEach(b => {
+        b.className = 'type-tab px-4 py-1.5 text-xs font-bold uppercase tracking-wider bg-gray-100 text-gray-600 hover:bg-gray-200';
+      });
+      const activeBtn = document.getElementById(`tab-${type.toLowerCase()}`);
+      if (activeBtn) activeBtn.className = 'type-tab px-4 py-1.5 text-xs font-bold uppercase tracking-wider bg-brand-charcoal text-white';
+      renderProperties();
+    }
+
+    function filterByCity(city) {
+      currentCityFilter = city;
+      document.getElementById('cityFilter').value = city;
+      renderProperties();
+      scrollToSection('propertiesGrid');
+    }
+
+    function applyFilters() {
+      currentCityFilter = document.getElementById('cityFilter').value;
+      currentBedFilter = parseInt(document.getElementById('bedFilter').value, 10);
+      renderProperties();
+    }
+
+    function openPropertyModal(id) {
+      const p = properties.find(item => item.id === id);
+      if (!p) return;
+      const agent = agents.find(a => a.email === p.agentEmail) || agents[0];
+
+      const modal = document.getElementById('propertyModal');
+      const content = document.getElementById('modalContent');
+
+      content.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="bg-black">
+            <img src="${p.images[0]}" alt="${p.title}" class="w-full h-80 md:h-full object-cover">
+          </div>
+          <div class="p-6 md:p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-brand-charcoal">${p.type}</span>
+                <span class="text-xs text-brand-walnut font-bold uppercase tracking-wider">${p.area}, ${p.city}</span>
+              </div>
+              <h2 class="font-cinzel text-2xl font-bold text-gray-900 mb-3">${p.title}</h2>
+              <div class="font-cinzel text-xl font-bold text-brand-walnut mb-4">${formatPrice(p)}</div>
+              
+              <p class="text-xs text-gray-600 font-light leading-relaxed mb-6">${p.description}</p>
+              
+              <div class="grid grid-cols-3 gap-2 p-3 bg-gray-50 border border-gray-200 text-center text-xs mb-6 font-mono">
+                <div><span class="text-gray-400 block text-[10px]">Bedrooms</span><strong class="text-gray-900">${p.bedrooms}</strong></div>
+                <div><span class="text-gray-400 block text-[10px]">Bathrooms</span><strong class="text-gray-900">${p.bathrooms}</strong></div>
+                <div><span class="text-gray-400 block text-[10px]">Area</span><strong class="text-gray-900">${p.sizeSqft} SqFt</strong></div>
+              </div>
+
+              <div class="p-3 bg-amber-50/70 border border-amber-200 text-xs mb-6">
+                <span class="font-bold text-brand-walnut block uppercase text-[10px] tracking-wider mb-1">Layer 1: Masked Listing Counsel</span>
+                <div class="text-gray-700">Agent: <strong>${agent.name}</strong> (${agent.agency})</div>
+                <div class="text-gray-500 font-mono text-[11px] mt-0.5">Phone: +92-3**-******* (Token Lock Required)</div>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <button onclick="closePropertyModal(); openTokenSimModal();" class="w-full py-3 bg-brand-charcoal hover:bg-brand-walnut text-white font-bold text-xs uppercase tracking-wider transition">
+                Schedule Viewing (Pay PKR 5,000 Token)
+              </button>
+              <button onclick="closePropertyModal(); openConciergeModal();" class="w-full py-2.5 border border-gray-300 hover:border-black text-gray-700 text-xs font-semibold uppercase tracking-wider transition">
+                Inquire via Private Concierge
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closePropertyModal() {
+      document.getElementById('propertyModal').classList.add('hidden');
+    }
+
+    function openTokenSimModal() {
+      // Reset simulator state
+      document.getElementById('simStepsContainer').classList.remove('hidden');
+      document.getElementById('unmaskedResult').classList.add('hidden');
+      document.getElementById('startSimBtn').classList.remove('hidden');
+      ['step1', 'step2', 'step3', 'step4'].forEach(id => {
+        document.getElementById(id).className = 'p-3 border text-xs flex items-center justify-between border-gray-200 text-gray-500';
+      });
+      document.getElementById('tokenModal').classList.remove('hidden');
+    }
+
+    function closeTokenModal() {
+      document.getElementById('tokenModal').classList.add('hidden');
+    }
+
+    function runTokenSimulation() {
+      const btn = document.getElementById('startSimBtn');
+      btn.disabled = true;
+      btn.innerText = 'Processing Escrow Verification...';
+
+      const markStep = (stepId, text) => {
+        const el = document.getElementById(stepId);
+        el.className = 'p-3 border text-xs flex items-center justify-between border-emerald-500 bg-emerald-50/50 text-emerald-900 font-semibold';
+      };
+
+      setTimeout(() => markStep('step1'), 400);
+      setTimeout(() => markStep('step2'), 900);
+      setTimeout(() => markStep('step3'), 1400);
+      setTimeout(() => {
+        markStep('step4');
+        document.getElementById('unmaskedResult').classList.remove('hidden');
+        btn.classList.add('hidden');
+      }, 1900);
+    }
+
+    function openConciergeModal() {
+      document.getElementById('conciergeModal').classList.remove('hidden');
+    }
+
+    function closeConciergeModal() {
+      document.getElementById('conciergeModal').classList.add('hidden');
+    }
+
+    function handleConciergeSubmit(e) {
+      e.preventDefault();
+      alert('Thank you. Your confidential inquiry has been routed to DURVIX Concierge under PII Layer 1 encryption. An accredited advisor will contact you.');
+      closeConciergeModal();
+    }
+
+    function toggleAdminPanel() {
+      const modal = document.getElementById('adminPanelModal');
+      modal.classList.toggle('hidden');
+      renderAdminTable();
+    }
+
+    function switchRole(role) {
+      currentRole = role;
+      const adminNavBtn = document.getElementById('adminNavBtn');
+      if (role === 'ADMIN') {
+        adminNavBtn.classList.remove('hidden');
+        alert('Switched to ADMIN mode (DURVIX HQ). Control Room enabled on top navigation.');
+      } else {
+        adminNavBtn.classList.add('hidden');
+      }
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Initialize App
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProperties();
+      renderAgents();
+      renderAdminTable();
+      lucide.createIcons();
+    });
+  </script>
+</body>
 </html>
